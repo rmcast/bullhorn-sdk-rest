@@ -3,6 +3,7 @@ package com.bullhornsdk.data.model.entity.association.standard;
 import com.bullhornsdk.data.model.entity.association.AssociationField;
 import com.bullhornsdk.data.model.entity.association.EntityAssociations;
 import com.bullhornsdk.data.model.entity.core.standard.Appointment;
+import com.bullhornsdk.data.model.entity.core.standard.AppointmentAttendee;
 import com.bullhornsdk.data.model.entity.core.standard.Person;
 import com.bullhornsdk.data.model.entity.core.type.BullhornEntity;
 
@@ -14,6 +15,8 @@ import java.util.List;
  */
 public class AppointmentAssociations implements EntityAssociations<Appointment> {
 
+    private final AssociationField<Appointment, AppointmentAttendee> attendees = instantiateAssociationField(
+        "attendees", AppointmentAttendee.class);
     private final AssociationField<Appointment, Person> guests = instantiateAssociationField("guests",
             Person.class);
     private final AssociationField<Appointment, Appointment> childAppointments = instantiateAssociationField("childAppointments", Appointment.class);
@@ -28,6 +31,10 @@ public class AppointmentAssociations implements EntityAssociations<Appointment> 
 
     public static AppointmentAssociations getInstance() {
         return INSTANCE;
+    }
+
+    public AssociationField<Appointment, AppointmentAttendee> attendees() {
+        return attendees;
     }
 
     public AssociationField<Appointment, Person> guests() {
@@ -47,6 +54,7 @@ public class AppointmentAssociations implements EntityAssociations<Appointment> 
     public List<AssociationField<Appointment, ? extends BullhornEntity>> allAssociations() {
         if (allAssociations == null) {
             allAssociations = new ArrayList<AssociationField<Appointment, ? extends BullhornEntity>>();
+            allAssociations.add(attendees());
             allAssociations.add(guests());
             allAssociations.add(childAppointments());
         }
