@@ -222,12 +222,12 @@ public abstract class EntityFileAttachment extends AbstractEntity implements Que
     }
 
     @JsonProperty("isDeleted")
-    public Boolean getDeleted() {
+    public Boolean getIsDeleted() {
         return isDeleted;
     }
 
     @JsonProperty("isDeleted")
-    public void setDeleted(Boolean isDeleted) {
+    public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
 
