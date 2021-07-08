@@ -21,6 +21,7 @@ import com.bullhornsdk.data.model.entity.core.standard.JobOrder;
 import com.bullhornsdk.data.model.entity.core.standard.Skill;
 import com.bullhornsdk.data.model.entity.core.standard.Specialty;
 import com.bullhornsdk.data.model.entity.core.type.BullhornEntity;
+import com.bullhornsdk.data.model.entity.file.JobOrderFileAttachment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,9 @@ public final class JobOrderAssociations implements EntityAssociations<JobOrder> 
     private final AssociationField<JobOrder, Category> categories = instantiateAssociationField("categories", Category.class);
     private final AssociationField<JobOrder, Certification> certifications = instantiateAssociationField("certifications", Certification.class);
     private final AssociationField<JobOrder, CertificationGroup> certificationGroups = instantiateAssociationField("certificationGroups", CertificationGroup.class);
+    private final AssociationField<JobOrder, JobOrderFileAttachment> fileAttachments = instantiateAssociationField(
+        "fileAttachments",
+        JobOrderFileAttachment.class);
     private final AssociationField<JobOrder, Skill> skills = instantiateAssociationField("skills", Skill.class);
     private final AssociationField<JobOrder, Tearsheet> tearsheets = instantiateAssociationField("tearsheets", Tearsheet.class);
     private final AssociationField<JobOrder, Specialty> specialties = instantiateAssociationField("specialties", Specialty.class);
@@ -85,6 +89,10 @@ public final class JobOrderAssociations implements EntityAssociations<JobOrder> 
 
     public AssociationField<JobOrder, CertificationGroup> certificationGroups() {
         return certificationGroups;
+    }
+
+    public AssociationField<JobOrder, JobOrderFileAttachment> fileAttachments() {
+        return fileAttachments;
     }
 
     public AssociationField<JobOrder, Skill> skills() {
@@ -154,6 +162,7 @@ public final class JobOrderAssociations implements EntityAssociations<JobOrder> 
             allAssociations.add(categories());
             allAssociations.add(certifications());
             allAssociations.add(certificationGroups());
+            allAssociations.add(fileAttachments());
             allAssociations.add(skills());
             allAssociations.add(tearsheets());
             allAssociations.add(specialties());

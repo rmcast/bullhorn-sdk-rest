@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 import com.bullhornsdk.data.model.entity.core.paybill.BillingProfile;
 import com.bullhornsdk.data.model.entity.core.paybill.Location;
 import com.bullhornsdk.data.model.entity.customfields.CustomFieldsD;
+import com.bullhornsdk.data.model.entity.file.JobOrderFileAttachment;
 import org.joda.time.DateTime;
 
 import com.bullhornsdk.data.api.helper.RestOneToManySerializer;
@@ -115,6 +116,8 @@ public abstract class JobData extends CustomFieldsD implements BullhornEntity {
 	private String externalID;
 
 	private BigDecimal feeArrangement;
+
+	private OneToMany<JobOrderFileAttachment> fileAttachments;
 
 	@JsonIgnore
 	@Size(max = 30)
@@ -613,6 +616,17 @@ public abstract class JobData extends CustomFieldsD implements BullhornEntity {
 	public void setFeeArrangement(BigDecimal feeArrangement) {
 		this.feeArrangement = feeArrangement;
 	}
+
+	@JsonProperty("fileAttachments")
+    public OneToMany<JobOrderFileAttachment> getFileAttachments() {
+	    return fileAttachments;
+    }
+
+    @ReadOnly
+    @JsonProperty("fileAttachments")
+    public void setFileAttachments(OneToMany<JobOrderFileAttachment> fileAttachments) {
+	    this.fileAttachments = fileAttachments;
+    }
 
 	@JsonProperty("hoursOfOperation")
 	public String getHoursOfOperation() {
@@ -1303,6 +1317,7 @@ public abstract class JobData extends CustomFieldsD implements BullhornEntity {
             Objects.equals(externalCategoryID, jobData.externalCategoryID) &&
             Objects.equals(externalID, jobData.externalID) &&
             Objects.equals(feeArrangement, jobData.feeArrangement) &&
+            Objects.equals(fileAttachments, jobData.fileAttachments) &&
             Objects.equals(hoursOfOperation, jobData.hoursOfOperation) &&
             Objects.equals(hoursPerWeek, jobData.hoursPerWeek) &&
             Objects.equals(interviews, jobData.interviews) &&
@@ -1408,6 +1423,7 @@ public abstract class JobData extends CustomFieldsD implements BullhornEntity {
             ", externalCategoryID=" + externalCategoryID +
             ", externalID='" + externalID + '\'' +
             ", feeArrangement=" + feeArrangement +
+            ", fileAttachments=" + fileAttachments +
             ", hoursOfOperation='" + hoursOfOperation + '\'' +
             ", hoursPerWeek=" + hoursPerWeek +
             ", interviews=" + interviews +

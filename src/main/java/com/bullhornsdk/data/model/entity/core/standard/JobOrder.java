@@ -33,13 +33,13 @@ import com.fasterxml.jackson.annotation.JsonRootName;
     "customText34","customText35","customText36","customText37","customText38","customText39","customText4","customText40","customText5",
     "customText6","customText7","customText8","customText9","customTextBlock1","customTextBlock2","customTextBlock3","customTextBlock4",
     "customTextBlock5","dateAdded","dateClosed","dateEnd","dateLastExported","dateLastModified","dateLastPublished","degreeList",
-    "description","durationWeeks","educationDegree","employmentType","externalCategoryID","externalID","feeArrangement","hoursOfOperation",
-    "hoursPerWeek","interviews","isClientEditable","isDeleted","isInterviewRequired","isJobcastPublished","isOpen","isPublic","jobBoardList",
-    "location","markUpPercentage","notes","numOpenings","onSite","opportunity","optionsPackage","owner","payRate","placements",
-    "publicDescription","publishedZip","reasonClosed","reportTo","reportToClientContact","responseUser","salary","salaryUnit",
-    "sendouts","skillList","skills","source","specialties","startDate","status","submissions","tasks","taxRate","taxStatus",
-    "tearsheets","timeUnits","title","travelRequirements","type","usersAssigned","webResponses","willRelocate","willRelocateInt",
-    "willSponsor","workersCompRate","yearsRequired"})
+    "description","durationWeeks","educationDegree","employmentType","externalCategoryID","externalID",
+    "feeArrangement","fileAttachments","hoursOfOperation", "hoursPerWeek","interviews","isClientEditable","isDeleted","isInterviewRequired",
+    "isJobcastPublished","isOpen","isPublic","jobBoardList", "location","markUpPercentage","notes","numOpenings","onSite","opportunity",
+    "optionsPackage","owner","payRate","placements", "publicDescription","publishedZip","reasonClosed","reportTo","reportToClientContact",
+    "responseUser","salary","salaryUnit", "sendouts","skillList","skills","source","specialties","startDate","status","submissions","tasks",
+    "taxRate","taxStatus", "tearsheets","timeUnits","title","travelRequirements","type","usersAssigned","webResponses","willRelocate",
+    "willRelocateInt", "willSponsor","workersCompRate","yearsRequired"})
 public class JobOrder extends JobData implements QueryEntity, SearchEntity, UpdateEntity, CreateEntity, SoftDeleteEntity, FileEntity,
 		AssociationEntity, DateLastModifiedEntity, EditHistoryEntity {
 
