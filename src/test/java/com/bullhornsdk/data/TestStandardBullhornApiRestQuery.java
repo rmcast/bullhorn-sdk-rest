@@ -361,6 +361,15 @@ public class TestStandardBullhornApiRestQuery extends BaseTest {
         runAssertions("ListWrapper<Opportunity>", wrapper);
     }
 
+    @Test
+    public void testQueryOpportunityHistory() {
+
+        ListWrapper<OpportunityHistory> wrapper = bullhornData.query(OpportunityHistory.class, where, null,
+            queryParams);
+        runAssertions("ListWrapper<Opportunity>", wrapper);
+
+    }
+
 	@Test
 	public void testQueryPlacement() {
 

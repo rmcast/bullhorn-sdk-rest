@@ -73,6 +73,8 @@ public class TestEntities {
 
     private Integer opportunityId;
 
+    private Integer opportunityHistoryId;
+
     private Integer placementId;
 
     private Integer placementCertificationId;
@@ -182,6 +184,8 @@ public class TestEntities {
         this.noteEntityId = 1;
 
         this.opportunityId = 1;
+
+        this.opportunityHistoryId = 1;
 
         this.placementId = 1;
 
@@ -471,6 +475,14 @@ public class TestEntities {
         this.opportunityId = opportunityId;
     }
 
+    public Integer getOpportunityHistoryId() {
+        return opportunityHistoryId;
+    }
+
+    public void setOpportunityHistoryId(Integer opportunityHistoryId) {
+        this.opportunityHistoryId = opportunityHistoryId;
+    }
+
     public Integer getPlacementId() {
         return placementId;
     }
@@ -728,6 +740,8 @@ public class TestEntities {
             .append(noteEntityId)
             .append(",\n\t\"opportunityId\": ")
             .append(opportunityId)
+            .append(",\n\t\"opportunityHistoryId\": ")
+            .append(opportunityHistoryId)
             .append(",\n\t\"placementId\": ")
             .append(placementId)
             .append(",\n\t\"placementCertificationId\": ")

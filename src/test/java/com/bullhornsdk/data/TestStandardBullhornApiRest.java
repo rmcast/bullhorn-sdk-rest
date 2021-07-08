@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import com.bullhornsdk.data.model.entity.core.standard.*;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
@@ -15,44 +16,6 @@ import com.bullhornsdk.data.model.entity.core.customobjectinstances.joborder.Job
 import com.bullhornsdk.data.model.entity.core.customobjectinstances.opportunity.OpportunityCustomObjectInstance1;
 import com.bullhornsdk.data.model.entity.core.customobjectinstances.person.PersonCustomObjectInstance1;
 import com.bullhornsdk.data.model.entity.core.customobjectinstances.placement.PlacementCustomObjectInstance1;
-import com.bullhornsdk.data.model.entity.core.standard.Appointment;
-import com.bullhornsdk.data.model.entity.core.standard.AppointmentAttendee;
-import com.bullhornsdk.data.model.entity.core.standard.Branch;
-import com.bullhornsdk.data.model.entity.core.standard.BusinessSector;
-import com.bullhornsdk.data.model.entity.core.standard.Candidate;
-import com.bullhornsdk.data.model.entity.core.standard.CandidateEducation;
-import com.bullhornsdk.data.model.entity.core.standard.CandidateReference;
-import com.bullhornsdk.data.model.entity.core.standard.CandidateWorkHistory;
-import com.bullhornsdk.data.model.entity.core.standard.Category;
-import com.bullhornsdk.data.model.entity.core.standard.Certification;
-import com.bullhornsdk.data.model.entity.core.standard.ClientContact;
-import com.bullhornsdk.data.model.entity.core.standard.ClientCorporation;
-import com.bullhornsdk.data.model.entity.core.standard.CorporateUser;
-import com.bullhornsdk.data.model.entity.core.standard.CorporationDepartment;
-import com.bullhornsdk.data.model.entity.core.standard.Country;
-import com.bullhornsdk.data.model.entity.core.standard.Department;
-import com.bullhornsdk.data.model.entity.core.standard.File;
-import com.bullhornsdk.data.model.entity.core.standard.HousingComplex;
-import com.bullhornsdk.data.model.entity.core.standard.JobBoardPost;
-import com.bullhornsdk.data.model.entity.core.standard.JobOrder;
-import com.bullhornsdk.data.model.entity.core.standard.JobSubmission;
-import com.bullhornsdk.data.model.entity.core.standard.JobSubmissionHistory;
-import com.bullhornsdk.data.model.entity.core.standard.Lead;
-import com.bullhornsdk.data.model.entity.core.standard.Note;
-import com.bullhornsdk.data.model.entity.core.standard.NoteEntity;
-import com.bullhornsdk.data.model.entity.core.standard.Opportunity;
-import com.bullhornsdk.data.model.entity.core.standard.Placement;
-import com.bullhornsdk.data.model.entity.core.standard.PlacementChangeRequest;
-import com.bullhornsdk.data.model.entity.core.standard.PlacementCommission;
-import com.bullhornsdk.data.model.entity.core.standard.Sendout;
-import com.bullhornsdk.data.model.entity.core.standard.Skill;
-import com.bullhornsdk.data.model.entity.core.standard.Specialty;
-import com.bullhornsdk.data.model.entity.core.standard.State;
-import com.bullhornsdk.data.model.entity.core.standard.Task;
-import com.bullhornsdk.data.model.entity.core.standard.Tearsheet;
-import com.bullhornsdk.data.model.entity.core.standard.TimeUnit;
-import com.bullhornsdk.data.model.entity.core.standard.WorkersCompensation;
-import com.bullhornsdk.data.model.entity.core.standard.WorkersCompensationRate;
 import com.bullhornsdk.data.model.response.list.ListWrapper;
 import com.google.common.collect.Sets;
 
@@ -283,6 +246,17 @@ public class TestStandardBullhornApiRest extends BaseTest {
         Opportunity entity = bullhornData.findEntity(Opportunity.class, testEntities.getOpportunityId(), Sets.newHashSet("id"));
 
         assertNotNull("Opportunity is null", entity);
+
+    }
+
+    @Test
+    public void testFindOpportunityHistory() {
+
+        OpportunityHistory entity = bullhornData.findEntity(OpportunityHistory.class,
+            testEntities.getOpportunityHistoryId(),
+            Sets.newHashSet("id"));
+
+        assertNotNull("OpportunityHistory is null", entity);
 
     }
 

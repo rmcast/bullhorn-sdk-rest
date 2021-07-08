@@ -386,6 +386,8 @@ public enum BullhornEntityInfo {
     NOTE("Note", Note.class, NoteWrapper.class, NoteListWrapper.class, null, null),
     NOTE_ENTITY("NoteEntity", NoteEntity.class, NoteEntityWrapper.class, NoteEntityListWrapper.class, null, null),
     OPPORTUNITY("Opportunity", Opportunity.class, OpportunityWrapper.class, OpportunityListWrapper.class, "OpportunityEditHistory", "OpportunityEditHistoryFieldChange"),
+    OPPORTUNITY_HISTORY("OpportunityHistory", OpportunityHistory.class, OpportunityHistoryWrapper.class,
+        OpportunityHistoryListWrapper.class, null, null),
     PERSON("Person", Person.class, PersonWrapper.class, PersonListWrapper.class, null, null),
     PLACEMENT("Placement", Placement.class, PlacementWrapper.class, PlacementListWrapper.class, "PlacementEditHistory",
         "PlacementEditHistoryFieldChange"),
