@@ -23,14 +23,17 @@ import javax.validation.constraints.Size;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonRootName(value = "data")
-@JsonPropertyOrder({ "id", "appointmentUUID", "guests", "candidateReference", "childAppointments", "clientContactReference",
-        "communicationMethod", "dateAdded", "dateBegin", "dateEnd", "dateLastModified", "description", "isAllDay", "isDeleted",
-        "isPrivate", "jobOrder", "lead", "location", "migrateGUID", "notificationMinutes", "opportunity", "owner", "parentAppointment", "placement",
-        "recurrenceDayBits", "recurrenceFrequency", "recurrenceMax", "recurrenceMonthBits", "recurrenceStyle", "recurrenceType",
-        "showTimeAs", "subject", "timeZoneID", "type" })
+@JsonPropertyOrder({ "id", "attendees", "appointmentUUID", "guests", "candidateReference", "childAppointments",
+        "clientContactReference", "communicationMethod", "dateAdded", "dateBegin", "dateEnd", "dateLastModified",
+        "description", "isAllDay", "isDeleted", "isPrivate", "jobOrder", "jobSubmission", "lead", "location",
+        "migrateGUID", "notificationMinutes", "opportunity", "owner", "parentAppointment", "placement",
+        "recurrenceDayBits", "recurrenceFrequency", "recurrenceMax", "recurrenceMonthBits", "recurrenceStyle",
+        "recurrenceType", "showTimeAs", "subject", "timeZoneID", "type" })
 public class Appointment extends AbstractEntity implements QueryEntity, UpdateEntity, CreateEntity, SoftDeleteEntity,
         DateLastModifiedEntity, EditHistoryEntity, AssociationEntity {
     private Integer id;
+
+    private OneToMany<AppointmentAttendee> attendees;
 
     @BullhornUUID
     private String appointmentUUID;
@@ -64,6 +67,8 @@ public class Appointment extends AbstractEntity implements QueryEntity, UpdateEn
     private Boolean isPrivate;
 
     private JobOrder jobOrder;
+
+    private JobSubmission jobSubmission;
 
     private Lead lead;
 
@@ -143,6 +148,17 @@ public class Appointment extends AbstractEntity implements QueryEntity, UpdateEn
     @JsonProperty("id")
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @JsonProperty("attendees")
+    public OneToMany<AppointmentAttendee> getAttendees() {
+        return attendees;
+    }
+
+    @ReadOnly
+    @JsonProperty("attendees")
+    public void setAttendees(OneToMany<AppointmentAttendee> attendees) {
+        this.attendees = attendees;
     }
 
     @JsonProperty("appointmentUUID")
@@ -296,6 +312,16 @@ public class Appointment extends AbstractEntity implements QueryEntity, UpdateEn
     @JsonProperty("jobOrder")
     public void setJobOrder(JobOrder jobOrder) {
         this.jobOrder = jobOrder;
+    }
+
+    @JsonProperty("jobSubmission")
+    public JobSubmission getJobSubmission() {
+        return jobSubmission;
+    }
+
+    @JsonProperty("jobSubmission")
+    public void setJobSubmission(JobSubmission jobSubmission) {
+        this.jobSubmission = jobSubmission;
     }
 
     @JsonProperty("lead")
@@ -485,6 +511,7 @@ public class Appointment extends AbstractEntity implements QueryEntity, UpdateEn
         Appointment that = (Appointment) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (attendees != null ? !attendees.equals(that.attendees) : that.attendees != null) return false;
         if (appointmentUUID != null ? !appointmentUUID.equals(that.appointmentUUID) : that.appointmentUUID != null)
             return false;
         if (guests != null ? !guests.equals(that.guests) : that.guests != null) return false;
@@ -506,6 +533,7 @@ public class Appointment extends AbstractEntity implements QueryEntity, UpdateEn
         if (isDeleted != null ? !isDeleted.equals(that.isDeleted) : that.isDeleted != null) return false;
         if (isPrivate != null ? !isPrivate.equals(that.isPrivate) : that.isPrivate != null) return false;
         if (jobOrder != null ? !jobOrder.equals(that.jobOrder) : that.jobOrder != null) return false;
+        if (jobSubmission != null ? !jobSubmission.equals(that.jobSubmission) : that.jobSubmission != null) return false;
         if (lead != null ? !lead.equals(that.lead) : that.lead != null) return false;
         if (location != null ? !location.equals(that.location) : that.location != null) return false;
         if (migrateGUID != null ? !migrateGUID.equals(that.migrateGUID) : that.migrateGUID != null) return false;
@@ -539,6 +567,8 @@ public class Appointment extends AbstractEntity implements QueryEntity, UpdateEn
         StringBuilder builder = new StringBuilder();
         builder.append("Appointment {\nid=");
         builder.append(id);
+        builder.append(", \nattendees=");
+        builder.append(attendees);
         builder.append(", \nappointmentUUID=");
         builder.append(appointmentUUID);
         builder.append(", \nguests=");
@@ -569,6 +599,8 @@ public class Appointment extends AbstractEntity implements QueryEntity, UpdateEn
         builder.append(isPrivate);
         builder.append(", \njobOrder=");
         builder.append(jobOrder);
+        builder.append(", \njobSubmission=");
+        builder.append(jobSubmission);
         builder.append(", \nlocation=");
         builder.append(location);
         builder.append(", \nmigrateGUID=");
@@ -612,6 +644,7 @@ public class Appointment extends AbstractEntity implements QueryEntity, UpdateEn
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (attendees != null ? attendees.hashCode() : 0);
         result = 31 * result + (appointmentUUID != null ? appointmentUUID.hashCode() : 0);
         result = 31 * result + (guests != null ? guests.hashCode() : 0);
         result = 31 * result + (candidateReference != null ? candidateReference.hashCode() : 0);
@@ -627,6 +660,7 @@ public class Appointment extends AbstractEntity implements QueryEntity, UpdateEn
         result = 31 * result + (isDeleted != null ? isDeleted.hashCode() : 0);
         result = 31 * result + (isPrivate != null ? isPrivate.hashCode() : 0);
         result = 31 * result + (jobOrder != null ? jobOrder.hashCode() : 0);
+        result = 31 * result + (jobSubmission != null ? jobSubmission.hashCode() : 0);
         result = 31 * result + (lead != null ? lead.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (migrateGUID != null ? migrateGUID.hashCode() : 0);
