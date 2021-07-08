@@ -12,6 +12,7 @@ import com.bullhornsdk.data.model.entity.core.customobjectinstances.placement.Pl
 import com.bullhornsdk.data.model.entity.core.customobjectinstances.placement.PlacementCustomObjectInstance7;
 import com.bullhornsdk.data.model.entity.core.customobjectinstances.placement.PlacementCustomObjectInstance8;
 import com.bullhornsdk.data.model.entity.core.customobjectinstances.placement.PlacementCustomObjectInstance9;
+import com.bullhornsdk.data.model.entity.core.standard.CorporateUser;
 import com.bullhornsdk.data.model.entity.core.standard.Placement;
 import com.bullhornsdk.data.model.entity.core.standard.PlacementCertification;
 import com.bullhornsdk.data.model.entity.core.standard.TimeUnit;
@@ -30,6 +31,8 @@ public final class PlacementAssociations implements EntityAssociations<Placement
 
     private final AssociationField<Placement,TimeUnit> timeUnits= instantiateAssociationField("timeUnits",TimeUnit.class);
     private final AssociationField<Placement, PlacementCertification> placementCertifications = instantiateAssociationField("placementCertifications", PlacementCertification.class);
+    private final AssociationField<Placement, CorporateUser> owners = instantiateAssociationField("owners",
+        CorporateUser.class);
 
     private final AssociationField<Placement, PlacementCustomObjectInstance1> customObject1s = instantiateAssociationField("customObject1s", PlacementCustomObjectInstance1.class);
     private final AssociationField<Placement, PlacementCustomObjectInstance2> customObject2s = instantiateAssociationField("customObject2s", PlacementCustomObjectInstance2.class);
@@ -58,6 +61,10 @@ public final class PlacementAssociations implements EntityAssociations<Placement
     }
 
     public AssociationField<Placement,PlacementCertification> placementCertifications() { return placementCertifications; }
+
+    public AssociationField<Placement, CorporateUser> owners() {
+        return owners;
+    }
 
     public AssociationField<Placement, PlacementCustomObjectInstance1> customObject1s() {
         return customObject1s;
@@ -110,6 +117,7 @@ public final class PlacementAssociations implements EntityAssociations<Placement
             allAssociations = new ArrayList<AssociationField<Placement,? extends BullhornEntity>>();
             allAssociations.add(timeUnits());
             allAssociations.add(placementCertifications());
+            allAssociations.add(owners());
             allAssociations.add(customObject1s());
             allAssociations.add(customObject2s());
             allAssociations.add(customObject3s());

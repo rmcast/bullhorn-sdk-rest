@@ -41,39 +41,38 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonRootName(value = "data")
 @JsonPropertyOrder({ "id", "appointments", "approvingClientContact", "backupApprovingClientContact", "billingClientContact",
-		"billingFrequency", "billingProfile", "bonusPackage", "branch", "candidate", "placementCertifications", "changeRequests", "clientBillRate", "clientOvertimeRate",
-        "comments", "commissions", "correlatedCustomDate1", "correlatedCustomDate2", "correlatedCustomDate3", "correlatedCustomFloat1",
-		"correlatedCustomFloat2", "correlatedCustomFloat3", "correlatedCustomInt1", "correlatedCustomInt2", "correlatedCustomInt3",
-		"correlatedCustomText1", "correlatedCustomText10", "correlatedCustomText2", "correlatedCustomText3", "correlatedCustomText4",
-		"correlatedCustomText5", "correlatedCustomText6", "correlatedCustomText7", "correlatedCustomText8", "correlatedCustomText9",
-		"correlatedCustomTextBlock1", "correlatedCustomTextBlock2", "correlatedCustomTextBlock3", "costCenter", "customBillRate1",
-		"customBillRate10", "customBillRate2", "customBillRate3", "customBillRate4", "customBillRate5", "customBillRate6",
-		"customBillRate7", "customBillRate8", "customBillRate9", "customDate1", "customDate10","customDate11", "customDate12", "customDate13",
-        "customDate2", "customDate3", "customDate4", "customDate5", "customDate6", "customDate7", "customDate8", "customDate9", "customEncryptedText1",
-        "customEncryptedText2", "customEncryptedText3", "customEncryptedText4", "customEncryptedText5", "customEncryptedText6", "customEncryptedText7",
-        "customEncryptedText8", "customEncryptedText9",  "customEncryptedText10", "customFloat1", "customFloat10", "customFloat11","customFloat12",
-        "customFloat13", "customFloat14", "customFloat15", "customFloat16", "customFloat17", "customFloat18", "customFloat19", "customFloat2",
-        "customFloat20", "customFloat21", "customFloat22", "customFloat23", "customFloat3", "customFloat4", "customFloat5", "customFloat6",
-        "customFloat7", "customFloat8", "customFloat9","customInt1", "customInt10", "customInt11", "customInt12", "customInt13", "customInt14",
-        "customInt15", "customInt16", "customInt17", "customInt18", "customInt19", "customInt2", "customInt20", "customInt21", "customInt22", "customInt23",
-        "customInt3", "customInt4", "customInt5", "customInt6", "customInt7", "customInt8", "customInt9", "customPayRate1", "customPayRate10", "customPayRate2",
-		"customPayRate3", "customPayRate4", "customPayRate5", "customPayRate6", "customPayRate7", "customPayRate8", "customPayRate9",
-		"customText1", "customText10", "customText11", "customText12", "customText13", "customText14", "customText15", "customText16",
-		"customText17", "customText18", "customText19", "customText2", "customText20", "customText21", "customText22", "customText23",
-		"customText24", "customText25", "customText26", "customText27", "customText28", "customText29", "customText3", "customText30",
-		"customText31", "customText32", "customText33", "customText34", "customText35", "customText36", "customText37", "customText38",
-		"customText39", "customText4", "customText40", "customText41", "customText42", "customText43", "customText44", "customText45", "customText46",
-        "customText47", "customText48", "customText49", "customText5", "customText51", "customText52", "customText53", "customText54", "customText55",
-        "customText56", "customText57", "customText58", "customText59", "customText6", "customText60", "customText7", "customText8", "customText9",
-        "customTextBlock1", "customTextBlock10", "customTextBlock2", "customTextBlock3", "customTextBlock4", "customTextBlock5",
-        "customTextBlock6", "customTextBlock7", "customTextBlock8", "customTextBlock9", "dateAdded", "dateBegin",
-		"dateClientEffective", "dateEffective", "dateEnd", "dateLastModified", "daysGuaranteed", "daysProRated", "durationWeeks", "employeeType",
-		"employmentType", "fee", "flatFee", "fileAttachments", "hoursOfOperation", "hoursPerDay", "housingManagerID", "housingStatus", "invoiceGroupName",
-		"jobOrder", "jobSubmission", "markUpPercentage", "migrateGUID", "notes", "overtimeMarkUpPercentage", "optionsPackage",
-		"otExemption", "otherHourlyFee", "otherHourlyFeeComments", "overtimeRate", "payRate", "projectCodeList",
-		"recruitingManagerPercentGrossMargin", "referralFee", "referralFeeType", "reportTo", "reportedMargin", "salary", "salaryUnit",
-		"salesManagerPercentGrossMargin", "statementClientContact", "status", "tasks", "taxRate", "taxState", "terminationReason",
-		"timeUnits", "vendorClientCorporation", "workWeekStart", "workersCompensationRate", "customObject1s", "customObject2s", "customObject3s", "customObject4s",
+		"billingFrequency", "billingProfile", "bonusPackage", "branch", "candidate", "placementCertifications", "changeRequests", "clientBillRate",
+        "clientContact", "clientCorporation", "clientOvertimeRate", "comments", "commissions", "correlatedCustomDate1", "correlatedCustomDate2",
+        "correlatedCustomDate3", "correlatedCustomFloat1", "correlatedCustomFloat2", "correlatedCustomFloat3", "correlatedCustomInt1",
+        "correlatedCustomInt2", "correlatedCustomInt3", "correlatedCustomText1", "correlatedCustomText10", "correlatedCustomText2",
+        "correlatedCustomText3", "correlatedCustomText4", "correlatedCustomText5", "correlatedCustomText6", "correlatedCustomText7",
+        "correlatedCustomText8", "correlatedCustomText9", "correlatedCustomTextBlock1", "correlatedCustomTextBlock2", "correlatedCustomTextBlock3",
+        "costCenter", "customBillRate1", "customBillRate10", "customBillRate2", "customBillRate3", "customBillRate4", "customBillRate5",
+        "customBillRate6", "customBillRate7", "customBillRate8", "customBillRate9", "customDate1", "customDate10","customDate11", "customDate12",
+        "customDate13", "customDate2", "customDate3", "customDate4", "customDate5", "customDate6", "customDate7", "customDate8", "customDate9",
+        "customEncryptedText1", "customEncryptedText2", "customEncryptedText3", "customEncryptedText4", "customEncryptedText5", "customEncryptedText6",
+        "customEncryptedText7", "customEncryptedText8", "customEncryptedText9",  "customEncryptedText10", "customFloat1", "customFloat10",
+        "customFloat11", "customFloat12", "customFloat13", "customFloat14", "customFloat15", "customFloat16", "customFloat17", "customFloat18",
+        "customFloat19", "customFloat2", "customFloat20", "customFloat21", "customFloat22", "customFloat23", "customFloat3", "customFloat4",
+        "customFloat5", "customFloat6", "customFloat7", "customFloat8", "customFloat9","customInt1", "customInt10", "customInt11", "customInt12",
+        "customInt13", "customInt14", "customInt15", "customInt16", "customInt17", "customInt18", "customInt19", "customInt2", "customInt20",
+        "customInt21", "customInt22", "customInt23", "customInt3", "customInt4", "customInt5", "customInt6", "customInt7", "customInt8", "customInt9",
+        "customPayRate1", "customPayRate10", "customPayRate2", "customPayRate3", "customPayRate4", "customPayRate5", "customPayRate6", "customPayRate7",
+        "customPayRate8", "customPayRate9", "customText1", "customText10", "customText11", "customText12", "customText13", "customText14", "customText15",
+        "customText16", "customText17", "customText18", "customText19", "customText2", "customText20", "customText21", "customText22", "customText23",
+        "customText24", "customText25", "customText26", "customText27", "customText28", "customText29", "customText3", "customText30", "customText31",
+        "customText32", "customText33", "customText34", "customText35", "customText36", "customText37", "customText38", "customText39", "customText4",
+        "customText40", "customText41", "customText42", "customText43", "customText44", "customText45", "customText46", "customText47", "customText48",
+        "customText49", "customText5", "customText51", "customText52", "customText53", "customText54", "customText55", "customText56", "customText57",
+        "customText58", "customText59", "customText6", "customText60", "customText7", "customText8", "customText9", "customTextBlock1", "customTextBlock10",
+        "customTextBlock2", "customTextBlock3", "customTextBlock4", "customTextBlock5", "customTextBlock6", "customTextBlock7", "customTextBlock8",
+        "customTextBlock9", "dateAdded", "dateBegin", "dateClientEffective", "dateEffective", "dateEnd", "dateLastModified", "daysGuaranteed", "daysProRated",
+        "durationWeeks", "employeeType", "employmentType", "fee", "flatFee", "fileAttachments", "hoursOfOperation", "hoursPerDay", "housingManagerID",
+        "housingStatus", "invoiceGroupName", "jobOrder", "jobSubmission", "markUpPercentage", "migrateGUID", "notes", "overtimeMarkUpPercentage", "owner",
+        "owners", "optionsPackage", "otExemption", "otherHourlyFee", "otherHourlyFeeComments", "overtimeRate", "payRate", "projectCodeList",
+        "recruitingManagerPercentGrossMargin", "referralFee", "referralFeeType", "reportTo", "reportedMargin", "salary", "salaryUnit",
+        "salesManagerPercentGrossMargin", "statementClientContact", "status", "tasks", "taxRate", "taxState", "terminationReason", "timeUnits",
+        "vendorClientCorporation", "workWeekStart", "workersCompensationRate", "customObject1s", "customObject2s", "customObject3s", "customObject4s",
         "customObject5s", "customObject6s", "customObject7s", "customObject8s", "customObject9s", "customObject10s", "location", "timeAndExpense" })
 public class Placement extends CustomFieldsD implements SearchEntity, QueryEntity, UpdateEntity, CreateEntity, HardDeleteEntity,
 		FileEntity, AssociationEntity, DateLastModifiedEntity, EditHistoryEntity {
@@ -106,6 +105,10 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
 	private OneToMany<PlacementChangeRequest> changeRequests;
 
 	private BigDecimal clientBillRate;
+
+	private ClientContact clientContact;
+
+	private ClientCorporation clientCorporation;
 
 	private BigDecimal clientOvertimeRate;
 
@@ -241,6 +244,10 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
 	private Integer workWeekStart;
 
 	private WorkersCompensationRate workersCompensationRate;
+
+    private CorporateUser owner;
+
+    private OneToMany<CorporateUser> owners;
 
     private OneToMany<PlacementCustomObjectInstance1> customObject1s;
 
@@ -428,6 +435,27 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
 	public void setClientBillRate(BigDecimal clientBillRate) {
 		this.clientBillRate = clientBillRate;
 	}
+
+	@JsonProperty("clientContact")
+    public ClientContact getClientContact() {
+	    return clientContact;
+    }
+
+	@JsonProperty("clientContact")
+    public void setClientContact(ClientContact clientContact) {
+	    this.clientContact = clientContact;
+    }
+
+	@JsonProperty("clientCorporation")
+    public ClientCorporation getClientCorporation() {
+        return clientCorporation;
+    }
+
+	@JsonProperty("clientCorporation")
+    public void setClientCorporation(ClientCorporation clientCorporation) {
+	    this.clientCorporation = clientCorporation;
+    }
+
 
 	@JsonProperty("clientOvertimeRate")
 	public BigDecimal getClientOvertimeRate() {
@@ -975,6 +1003,26 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
         this.fileAttachments = fileAttachments;
     }
 
+    @JsonProperty("owner")
+    public CorporateUser getOwner() {
+	    return owner;
+    }
+
+    @JsonProperty("owner")
+    public void setOwner(CorporateUser owner) {
+	    this.owner = owner;
+    }
+
+    @JsonProperty("owners")
+    public OneToMany<CorporateUser> getOwners() {
+        return owners;
+    }
+
+    @JsonProperty("owners")
+    public void setOwners(OneToMany<CorporateUser> owners) {
+        this.owners = owners;
+    }
+
     @JsonProperty("customObject1s")
     @JsonSerialize(using = RestOneToManySerializer.class)
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -1134,6 +1182,8 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
             java.util.Objects.equals(placementCertifications, placement.placementCertifications) &&
             java.util.Objects.equals(changeRequests, placement.changeRequests) &&
             java.util.Objects.equals(clientBillRate, placement.clientBillRate) &&
+            java.util.Objects.equals(clientContact, placement.clientContact) &&
+            java.util.Objects.equals(clientCorporation, placement.clientCorporation) &&
             java.util.Objects.equals(clientOvertimeRate, placement.clientOvertimeRate) &&
             java.util.Objects.equals(comments, placement.comments) &&
             java.util.Objects.equals(commissions, placement.commissions) &&
@@ -1189,6 +1239,8 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
             java.util.Objects.equals(vendorClientCorporation, placement.vendorClientCorporation) &&
             java.util.Objects.equals(workWeekStart, placement.workWeekStart) &&
             java.util.Objects.equals(workersCompensationRate, placement.workersCompensationRate) &&
+            java.util.Objects.equals(owner, placement.owner) &&
+            java.util.Objects.equals(owners, placement.owners) &&
             java.util.Objects.equals(customObject1s, placement.customObject1s) &&
             java.util.Objects.equals(customObject2s, placement.customObject2s) &&
             java.util.Objects.equals(customObject3s, placement.customObject3s) &&
@@ -1202,7 +1254,19 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
     }
 
     public int hashCode() {
-        return java.util.Objects.hash(super.hashCode(), id, appointments, approvingClientContact, backupApprovingClientContact, timeAndExpense, billingClientContact, billingProfile, billingFrequency, bonusPackage, branch, candidate, placementCertifications, changeRequests, clientBillRate, clientOvertimeRate, comments, commissions, location, costCenter, dateAdded, dateBegin, dateClientEffective, dateEffective, dateEnd, dateLastModified, daysGuaranteed, daysProRated, durationWeeks, employeeType, employmentType, fee, flatFee, fileAttachments, hoursOfOperation, hoursPerDay, housingManagerID, housingStatus, invoiceGroupName, jobOrder, jobSubmission, migrateGUID, optionsPackage, otExemption, otherHourlyFee, markUpPercentage, notes, otherHourlyFeeComments, overtimeMarkUpPercentage, overtimeRate, payRate, projectCodeList, recruitingManagerPercentGrossMargin, referralFee, referralFeeType, reportTo, reportedMargin, salary, salaryUnit, salesManagerPercentGrossMargin, statementClientContact, status, tasks, taxRate, taxState, terminationReason, timeUnits, vendorClientCorporation, workWeekStart, workersCompensationRate, customObject1s, customObject2s, customObject3s, customObject4s, customObject5s, customObject6s, customObject7s, customObject8s, customObject9s, customObject10s);
+        return java.util.Objects.hash(super.hashCode(), id, appointments, approvingClientContact,
+            backupApprovingClientContact, timeAndExpense, billingClientContact, billingProfile, billingFrequency,
+            bonusPackage, branch, candidate, placementCertifications, changeRequests, clientBillRate,
+            clientContact, clientCorporation, clientOvertimeRate, comments, commissions, location, costCenter, dateAdded,
+            dateBegin, dateClientEffective, dateEffective, dateEnd, dateLastModified, daysGuaranteed, daysProRated,
+            durationWeeks, employeeType, employmentType, fee, flatFee, fileAttachments, hoursOfOperation, hoursPerDay,
+            housingManagerID, housingStatus, invoiceGroupName, jobOrder, jobSubmission, migrateGUID, optionsPackage,
+            otExemption, otherHourlyFee, markUpPercentage, notes, otherHourlyFeeComments, overtimeMarkUpPercentage,
+            overtimeRate, payRate, projectCodeList, recruitingManagerPercentGrossMargin, referralFee, referralFeeType,
+            reportTo, reportedMargin, salary, salaryUnit, salesManagerPercentGrossMargin, statementClientContact, status,
+            tasks, taxRate, taxState, terminationReason, timeUnits, vendorClientCorporation, workWeekStart,
+            workersCompensationRate, owner, owners, customObject1s, customObject2s, customObject3s, customObject4s,
+            customObject5s, customObject6s, customObject7s, customObject8s, customObject9s, customObject10s);
     }
 
     @java.lang.Override
@@ -1222,6 +1286,8 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
             ", placementCertifications=" + placementCertifications +
             ", changeRequests=" + changeRequests +
             ", clientBillRate=" + clientBillRate +
+            ", clientContact=" + clientContact +
+            ", clientCorporation=" + clientCorporation +
             ", clientOvertimeRate=" + clientOvertimeRate +
             ", comments='" + comments + '\'' +
             ", commissions=" + commissions +
@@ -1277,6 +1343,8 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
             ", vendorClientCorporation=" + vendorClientCorporation +
             ", workWeekStart=" + workWeekStart +
             ", workersCompensationRate=" + workersCompensationRate +
+            ", owner=" + owner +
+            ", owners=" + owners +
             ", customObject1s=" + customObject1s +
             ", customObject2s=" + customObject2s +
             ", customObject3s=" + customObject3s +
