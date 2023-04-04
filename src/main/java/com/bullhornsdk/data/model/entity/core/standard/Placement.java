@@ -11,7 +11,10 @@ import com.bullhornsdk.data.model.entity.core.customobjectinstances.placement.Pl
 import com.bullhornsdk.data.model.entity.core.customobjectinstances.placement.PlacementCustomObjectInstance7;
 import com.bullhornsdk.data.model.entity.core.customobjectinstances.placement.PlacementCustomObjectInstance8;
 import com.bullhornsdk.data.model.entity.core.customobjectinstances.placement.PlacementCustomObjectInstance9;
+import com.bullhornsdk.data.model.entity.core.onboarding.OnboardingReceivedSent;
 import com.bullhornsdk.data.model.entity.core.paybill.BillingProfile;
+import com.bullhornsdk.data.model.entity.core.paybill.generalledger.*;
+import com.bullhornsdk.data.model.entity.core.paybill.optionslookup.SimplifiedOptionsLookup;
 import com.bullhornsdk.data.model.entity.core.type.AssociationEntity;
 import com.bullhornsdk.data.model.entity.core.type.CreateEntity;
 import com.bullhornsdk.data.model.entity.core.type.DateLastModifiedEntity;
@@ -41,39 +44,43 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonRootName(value = "data")
 @JsonPropertyOrder({ "id", "appointments", "approvingClientContact", "backupApprovingClientContact", "billingClientContact",
-		"billingFrequency", "billingProfile", "bonusPackage", "branch", "candidate", "placementCertifications", "changeRequests", "clientBillRate",
-        "clientContact", "clientCorporation", "clientOvertimeRate", "comments", "commissions", "correlatedCustomDate1", "correlatedCustomDate2",
-        "correlatedCustomDate3", "correlatedCustomFloat1", "correlatedCustomFloat2", "correlatedCustomFloat3", "correlatedCustomInt1",
-        "correlatedCustomInt2", "correlatedCustomInt3", "correlatedCustomText1", "correlatedCustomText10", "correlatedCustomText2",
-        "correlatedCustomText3", "correlatedCustomText4", "correlatedCustomText5", "correlatedCustomText6", "correlatedCustomText7",
-        "correlatedCustomText8", "correlatedCustomText9", "correlatedCustomTextBlock1", "correlatedCustomTextBlock2", "correlatedCustomTextBlock3",
-        "costCenter", "customBillRate1", "customBillRate10", "customBillRate2", "customBillRate3", "customBillRate4", "customBillRate5",
-        "customBillRate6", "customBillRate7", "customBillRate8", "customBillRate9", "customDate1", "customDate10","customDate11", "customDate12",
-        "customDate13", "customDate2", "customDate3", "customDate4", "customDate5", "customDate6", "customDate7", "customDate8", "customDate9",
-        "customEncryptedText1", "customEncryptedText2", "customEncryptedText3", "customEncryptedText4", "customEncryptedText5", "customEncryptedText6",
-        "customEncryptedText7", "customEncryptedText8", "customEncryptedText9",  "customEncryptedText10", "customFloat1", "customFloat10",
-        "customFloat11", "customFloat12", "customFloat13", "customFloat14", "customFloat15", "customFloat16", "customFloat17", "customFloat18",
-        "customFloat19", "customFloat2", "customFloat20", "customFloat21", "customFloat22", "customFloat23", "customFloat3", "customFloat4",
-        "customFloat5", "customFloat6", "customFloat7", "customFloat8", "customFloat9","customInt1", "customInt10", "customInt11", "customInt12",
-        "customInt13", "customInt14", "customInt15", "customInt16", "customInt17", "customInt18", "customInt19", "customInt2", "customInt20",
-        "customInt21", "customInt22", "customInt23", "customInt3", "customInt4", "customInt5", "customInt6", "customInt7", "customInt8", "customInt9",
-        "customPayRate1", "customPayRate10", "customPayRate2", "customPayRate3", "customPayRate4", "customPayRate5", "customPayRate6", "customPayRate7",
-        "customPayRate8", "customPayRate9", "customText1", "customText10", "customText11", "customText12", "customText13", "customText14", "customText15",
-        "customText16", "customText17", "customText18", "customText19", "customText2", "customText20", "customText21", "customText22", "customText23",
-        "customText24", "customText25", "customText26", "customText27", "customText28", "customText29", "customText3", "customText30", "customText31",
-        "customText32", "customText33", "customText34", "customText35", "customText36", "customText37", "customText38", "customText39", "customText4",
-        "customText40", "customText41", "customText42", "customText43", "customText44", "customText45", "customText46", "customText47", "customText48",
-        "customText49", "customText5", "customText51", "customText52", "customText53", "customText54", "customText55", "customText56", "customText57",
-        "customText58", "customText59", "customText6", "customText60", "customText7", "customText8", "customText9", "customTextBlock1", "customTextBlock10",
-        "customTextBlock2", "customTextBlock3", "customTextBlock4", "customTextBlock5", "customTextBlock6", "customTextBlock7", "customTextBlock8",
-        "customTextBlock9", "dateAdded", "dateBegin", "dateClientEffective", "dateEffective", "dateEnd", "dateLastModified", "daysGuaranteed", "daysProRated",
-        "durationWeeks", "employeeType", "employmentType", "fee", "flatFee", "fileAttachments", "hoursOfOperation", "hoursPerDay", "housingManagerID",
-        "housingStatus", "invoiceGroupName", "jobOrder", "jobSubmission", "markUpPercentage", "migrateGUID", "notes", "overtimeMarkUpPercentage", "owner",
-        "owners", "optionsPackage", "otExemption", "otherHourlyFee", "otherHourlyFeeComments", "overtimeRate", "payRate", "projectCodeList",
-        "recruitingManagerPercentGrossMargin", "referralFee", "referralFeeType", "reportTo", "reportedMargin", "salary", "salaryUnit",
-        "salesManagerPercentGrossMargin", "statementClientContact", "status", "tasks", "taxRate", "taxState", "terminationReason", "timeUnits",
-        "vendorClientCorporation", "workWeekStart", "workersCompensationRate", "customObject1s", "customObject2s", "customObject3s", "customObject4s",
-        "customObject5s", "customObject6s", "customObject7s", "customObject8s", "customObject9s", "customObject10s", "location", "timeAndExpense" })
+		"billingFrequency", "billingProfile", "bonusPackage", "branch", "bteSyncStatus", "candidate", "placementCertifications", "changeRequests", "clientBillRate", "clientOvertimeRate",
+        "comments", "commissions", "correlatedCustomDate1", "correlatedCustomDate2", "correlatedCustomDate3", "correlatedCustomFloat1",
+		"correlatedCustomFloat2", "correlatedCustomFloat3", "correlatedCustomInt1", "correlatedCustomInt2", "correlatedCustomInt3",
+		"correlatedCustomText1", "correlatedCustomText10", "correlatedCustomText2", "correlatedCustomText3", "correlatedCustomText4",
+		"correlatedCustomText5", "correlatedCustomText6", "correlatedCustomText7", "correlatedCustomText8", "correlatedCustomText9",
+		"correlatedCustomTextBlock1", "correlatedCustomTextBlock2", "correlatedCustomTextBlock3", "costCenter", "customBillRate1",
+		"customBillRate10", "customBillRate2", "customBillRate3", "customBillRate4", "customBillRate5", "customBillRate6",
+		"customBillRate7", "customBillRate8", "customBillRate9", "customDate1", "customDate10","customDate11", "customDate12", "customDate13",
+        "customDate2", "customDate3", "customDate4", "customDate5", "customDate6", "customDate7", "customDate8", "customDate9", "customEncryptedText1",
+        "customEncryptedText2", "customEncryptedText3", "customEncryptedText4", "customEncryptedText5", "customEncryptedText6", "customEncryptedText7",
+        "customEncryptedText8", "customEncryptedText9",  "customEncryptedText10", "customFloat1", "customFloat10", "customFloat11","customFloat12",
+        "customFloat13", "customFloat14", "customFloat15", "customFloat16", "customFloat17", "customFloat18", "customFloat19", "customFloat2",
+        "customFloat20", "customFloat21", "customFloat22", "customFloat23", "customFloat3", "customFloat4", "customFloat5", "customFloat6",
+        "customFloat7", "customFloat8", "customFloat9","customInt1", "customInt10", "customInt11", "customInt12", "customInt13", "customInt14",
+        "customInt15", "customInt16", "customInt17", "customInt18", "customInt19", "customInt2", "customInt20", "customInt21", "customInt22", "customInt23",
+        "customInt3", "customInt4", "customInt5", "customInt6", "customInt7", "customInt8", "customInt9", "customPayRate1", "customPayRate10", "customPayRate2",
+		"customPayRate3", "customPayRate4", "customPayRate5", "customPayRate6", "customPayRate7", "customPayRate8", "customPayRate9",
+		"customText1", "customText10", "customText11", "customText12", "customText13", "customText14", "customText15", "customText16",
+		"customText17", "customText18", "customText19", "customText2", "customText20", "customText21", "customText22", "customText23",
+		"customText24", "customText25", "customText26", "customText27", "customText28", "customText29", "customText3", "customText30",
+		"customText31", "customText32", "customText33", "customText34", "customText35", "customText36", "customText37", "customText38",
+		"customText39", "customText4", "customText40", "customText41", "customText42", "customText43", "customText44", "customText45", "customText46",
+        "customText47", "customText48", "customText49", "customText5", "customText51", "customText52", "customText53", "customText54", "customText55",
+        "customText56", "customText57", "customText58", "customText59", "customText6", "customText60", "customText7", "customText8", "customText9",
+        "customTextBlock1", "customTextBlock10", "customTextBlock2", "customTextBlock3", "customTextBlock4", "customTextBlock5",
+        "customTextBlock6", "customTextBlock7", "customTextBlock8", "customTextBlock9", "dateAdded", "dateBegin",
+		"dateClientEffective", "dateEffective", "dateEnd", "dateLastModified", "daysGuaranteed", "daysProRated", "durationWeeks", "employeeType",
+		"employmentType", "fee", "flatFee", "fileAttachments", "generalLedgerSegment1", "generalLedgerSegment2", "generalLedgerSegment3", "generalLedgerSegment4",
+        "generalLedgerSegment5", "hoursOfOperation", "hoursPerDay", "housingManagerID", "housingStatus", "invoiceGroupName",
+		"jobOrder", "jobSubmission", "lastBteSyncDate", "markUpPercentage", "migrateGUID", "notes",
+    "overtimeMarkUpPercentage", "owner", "owners", "optionsPackage",
+        "onboardingDocumentReceivedCount", "onboardingDocumentSentCount", "onboardingPercentComplete", "onboardingReceivedSent", "onboardingStatus",
+		"otExemption", "otherHourlyFee", "otherHourlyFeeComments", "overtimeRate", "payRate", "projectCodeList",
+		"recruitingManagerPercentGrossMargin", "referralFee", "referralFeeType", "reportTo", "reportedMargin", "salary", "salaryUnit",
+		"salesManagerPercentGrossMargin", "statementClientContact", "status", "tasks", "taxRate", "taxState", "terminationReason",
+		"timeUnits", "vendorClientCorporation", "workWeekStart", "workersCompensationRate", "customObject1s", "customObject2s", "customObject3s", "customObject4s",
+        "customObject5s", "customObject6s", "customObject7s", "customObject8s", "customObject9s", "customObject10s", "location", "timeAndExpense", "placementShiftSet" })
 public class Placement extends CustomFieldsD implements SearchEntity, QueryEntity, UpdateEntity, CreateEntity, HardDeleteEntity,
 		FileEntity, AssociationEntity, DateLastModifiedEntity, EditHistoryEntity {
 
@@ -121,6 +128,8 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
 
     private PlacementTimeAndExpense timeAndExpense;
 
+    private PlacementShiftSet placementShiftSet;
+
 	@JsonIgnore
 	@Size(max = 100)
 	private String costCenter;
@@ -156,6 +165,16 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
 
     private OneToMany<StandardFileAttachment> fileAttachments;
 
+    private GeneralLedgerSegment1 generalLedgerSegment1;
+
+    private GeneralLedgerSegment2 generalLedgerSegment2;
+
+    private GeneralLedgerSegment3 generalLedgerSegment3;
+
+    private GeneralLedgerSegment4 generalLedgerSegment4;
+
+    private GeneralLedgerSegment5 generalLedgerSegment5;
+
 	@JsonIgnore
 	@Size(max = 100)
 	private String hoursOfOperation;
@@ -180,6 +199,16 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
 	@JsonIgnore
 	private String optionsPackage;
 
+	private Integer onboardingDocumentReceivedCount;
+
+	private Integer onboardingDocumentSentCount;
+
+	private Integer onboardingPercentComplete;
+
+	private OnboardingReceivedSent onboardingReceivedSent;
+
+	private String onboardingStatus;
+
 	private Integer otExemption;
 
 	private BigDecimal otherHourlyFee;
@@ -194,6 +223,9 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
 	private BigDecimal overtimeMarkUpPercentage;
 
 	private BigDecimal overtimeRate;
+
+    @JsonIgnore
+    private String payGroup;
 
 	private BigDecimal payRate;
 
@@ -268,6 +300,10 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
     private OneToMany<PlacementCustomObjectInstance9> customObject9s;
 
     private OneToMany<PlacementCustomObjectInstance10> customObject10s;
+
+    private SimplifiedOptionsLookup bteSyncStatus;
+
+    private DateTime lastBteSyncDate;
 
 	public Placement() {
 		super();
@@ -630,6 +666,56 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
 		this.flatFee = flatFee;
 	}
 
+    @JsonProperty("generalLedgerSegment1")
+    public GeneralLedgerSegment1 getGeneralLedgerSegment1() {
+        return generalLedgerSegment1;
+    }
+
+    @JsonProperty("generalLedgerSegment1")
+    public void setGeneralLedgerSegment1(GeneralLedgerSegment1 generalLedgerSegment1) {
+        this.generalLedgerSegment1 = generalLedgerSegment1;
+    }
+
+    @JsonProperty("generalLedgerSegment2")
+    public GeneralLedgerSegment2 getGeneralLedgerSegment2() {
+        return generalLedgerSegment2;
+    }
+
+    @JsonProperty("generalLedgerSegment2")
+    public void setGeneralLedgerSegment2(GeneralLedgerSegment2 generalLedgerSegment2) {
+        this.generalLedgerSegment2 = generalLedgerSegment2;
+    }
+
+    @JsonProperty("generalLedgerSegment3")
+    public GeneralLedgerSegment3 getGeneralLedgerSegment3() {
+        return generalLedgerSegment3;
+    }
+
+    @JsonProperty("generalLedgerSegment3")
+    public void setGeneralLedgerSegment3(GeneralLedgerSegment3 generalLedgerSegment3) {
+        this.generalLedgerSegment3 = generalLedgerSegment3;
+    }
+
+    @JsonProperty("generalLedgerSegment4")
+    public GeneralLedgerSegment4 getGeneralLedgerSegment4() {
+        return generalLedgerSegment4;
+    }
+
+    @JsonProperty("generalLedgerSegment4")
+    public void setGeneralLedgerSegment4(GeneralLedgerSegment4 generalLedgerSegment4) {
+        this.generalLedgerSegment4 = generalLedgerSegment4;
+    }
+
+    @JsonProperty("generalLedgerSegment5")
+    public GeneralLedgerSegment5 getGeneralLedgerSegment5() {
+        return generalLedgerSegment5;
+    }
+
+    @JsonProperty("generalLedgerSegment5")
+    public void setGeneralLedgerSegment5(GeneralLedgerSegment5 generalLedgerSegment5) {
+        this.generalLedgerSegment5 = generalLedgerSegment5;
+    }
+
 	@JsonProperty("hoursOfOperation")
 	public String getHoursOfOperation() {
 		return hoursOfOperation;
@@ -751,7 +837,57 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
 		this.optionsPackage = optionsPackage;
 	}
 
-	@JsonProperty("otExemption")
+    @JsonProperty("onboardingDocumentReceivedCount")
+    public Integer getOnboardingDocumentReceivedCount() {
+        return onboardingDocumentReceivedCount;
+    }
+
+    @JsonProperty("onboardingDocumentReceivedCount")
+    public void setOnboardingDocumentReceivedCount(Integer onboardingDocumentReceivedCount) {
+        this.onboardingDocumentReceivedCount = onboardingDocumentReceivedCount;
+    }
+
+    @JsonProperty("onboardingDocumentSentCount")
+    public Integer getOnboardingDocumentSentCount() {
+        return onboardingDocumentSentCount;
+    }
+
+    @JsonProperty("onboardingDocumentSentCount")
+    public void setOnboardingDocumentSentCount(Integer onboardingDocumentSentCount) {
+        this.onboardingDocumentSentCount = onboardingDocumentSentCount;
+    }
+
+    @JsonProperty("onboardingPercentComplete")
+    public Integer getOnboardingPercentComplete() {
+        return onboardingPercentComplete;
+    }
+
+    @JsonProperty("onboardingPercentComplete")
+    public void setOnboardingPercentComplete(Integer onboardingPercentComplete) {
+        this.onboardingPercentComplete = onboardingPercentComplete;
+    }
+
+    @JsonProperty("onboardingReceivedSent")
+    public OnboardingReceivedSent getOnboardingReceivedSent() {
+        return onboardingReceivedSent;
+    }
+
+    @JsonProperty("onboardingReceivedSent")
+    public void setOnboardingReceivedSent(OnboardingReceivedSent onboardingReceivedSent) {
+        this.onboardingReceivedSent = onboardingReceivedSent;
+    }
+
+    @JsonProperty("onboardingStatus")
+    public String getOnboardingStatus() {
+        return onboardingStatus;
+    }
+
+    @JsonProperty("onboardingStatus")
+    public void setOnboardingStatus(String onboardingStatus) {
+        this.onboardingStatus = onboardingStatus;
+    }
+
+    @JsonProperty("otExemption")
 	public Integer getOtExemption() {
 		return otExemption;
 	}
@@ -791,7 +927,17 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
 		this.overtimeRate = overtimeRate;
 	}
 
-	@JsonProperty("payRate")
+    @JsonProperty("payGroup")
+    public String getPayGroup() {
+        return payGroup;
+    }
+
+    @JsonIgnore
+    public void setPayGroup(String payGroup) {
+        this.payGroup = payGroup;
+    }
+
+    @JsonProperty("payRate")
 	public BigDecimal getPayRate() {
 		return payRate;
 	}
@@ -1163,120 +1309,166 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
         this.timeAndExpense = timeAndExpense;
     }
 
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        if (!super.equals(object)) return false;
-        Placement placement = (Placement) object;
-        return java.util.Objects.equals(id, placement.id) &&
-            java.util.Objects.equals(appointments, placement.appointments) &&
-            java.util.Objects.equals(approvingClientContact, placement.approvingClientContact) &&
-            java.util.Objects.equals(backupApprovingClientContact, placement.backupApprovingClientContact) &&
-            java.util.Objects.equals(timeAndExpense, placement.timeAndExpense) &&
-            java.util.Objects.equals(billingClientContact, placement.billingClientContact) &&
-            java.util.Objects.equals(billingProfile, placement.billingProfile) &&
-            java.util.Objects.equals(billingFrequency, placement.billingFrequency) &&
-            java.util.Objects.equals(bonusPackage, placement.bonusPackage) &&
-            java.util.Objects.equals(branch, placement.branch) &&
-            java.util.Objects.equals(candidate, placement.candidate) &&
-            java.util.Objects.equals(placementCertifications, placement.placementCertifications) &&
-            java.util.Objects.equals(changeRequests, placement.changeRequests) &&
-            java.util.Objects.equals(clientBillRate, placement.clientBillRate) &&
-            java.util.Objects.equals(clientContact, placement.clientContact) &&
-            java.util.Objects.equals(clientCorporation, placement.clientCorporation) &&
-            java.util.Objects.equals(clientOvertimeRate, placement.clientOvertimeRate) &&
-            java.util.Objects.equals(comments, placement.comments) &&
-            java.util.Objects.equals(commissions, placement.commissions) &&
-            java.util.Objects.equals(location, placement.location) &&
-            java.util.Objects.equals(costCenter, placement.costCenter) &&
-            java.util.Objects.equals(dateAdded, placement.dateAdded) &&
-            java.util.Objects.equals(dateBegin, placement.dateBegin) &&
-            java.util.Objects.equals(dateClientEffective, placement.dateClientEffective) &&
-            java.util.Objects.equals(dateEffective, placement.dateEffective) &&
-            java.util.Objects.equals(dateEnd, placement.dateEnd) &&
-            java.util.Objects.equals(dateLastModified, placement.dateLastModified) &&
-            java.util.Objects.equals(daysGuaranteed, placement.daysGuaranteed) &&
-            java.util.Objects.equals(daysProRated, placement.daysProRated) &&
-            java.util.Objects.equals(durationWeeks, placement.durationWeeks) &&
-            java.util.Objects.equals(employeeType, placement.employeeType) &&
-            java.util.Objects.equals(employmentType, placement.employmentType) &&
-            java.util.Objects.equals(fee, placement.fee) &&
-            java.util.Objects.equals(flatFee, placement.flatFee) &&
-            java.util.Objects.equals(fileAttachments, placement.fileAttachments) &&
-            java.util.Objects.equals(hoursOfOperation, placement.hoursOfOperation) &&
-            java.util.Objects.equals(hoursPerDay, placement.hoursPerDay) &&
-            java.util.Objects.equals(housingManagerID, placement.housingManagerID) &&
-            java.util.Objects.equals(housingStatus, placement.housingStatus) &&
-            java.util.Objects.equals(invoiceGroupName, placement.invoiceGroupName) &&
-            java.util.Objects.equals(jobOrder, placement.jobOrder) &&
-            java.util.Objects.equals(jobSubmission, placement.jobSubmission) &&
-            java.util.Objects.equals(migrateGUID, placement.migrateGUID) &&
-            java.util.Objects.equals(optionsPackage, placement.optionsPackage) &&
-            java.util.Objects.equals(otExemption, placement.otExemption) &&
-            java.util.Objects.equals(otherHourlyFee, placement.otherHourlyFee) &&
-            java.util.Objects.equals(markUpPercentage, placement.markUpPercentage) &&
-            java.util.Objects.equals(notes, placement.notes) &&
-            java.util.Objects.equals(otherHourlyFeeComments, placement.otherHourlyFeeComments) &&
-            java.util.Objects.equals(overtimeMarkUpPercentage, placement.overtimeMarkUpPercentage) &&
-            java.util.Objects.equals(overtimeRate, placement.overtimeRate) &&
-            java.util.Objects.equals(payRate, placement.payRate) &&
-            java.util.Objects.equals(projectCodeList, placement.projectCodeList) &&
-            java.util.Objects.equals(recruitingManagerPercentGrossMargin, placement.recruitingManagerPercentGrossMargin) &&
-            java.util.Objects.equals(referralFee, placement.referralFee) &&
-            java.util.Objects.equals(referralFeeType, placement.referralFeeType) &&
-            java.util.Objects.equals(reportTo, placement.reportTo) &&
-            java.util.Objects.equals(reportedMargin, placement.reportedMargin) &&
-            java.util.Objects.equals(salary, placement.salary) &&
-            java.util.Objects.equals(salaryUnit, placement.salaryUnit) &&
-            java.util.Objects.equals(salesManagerPercentGrossMargin, placement.salesManagerPercentGrossMargin) &&
-            java.util.Objects.equals(statementClientContact, placement.statementClientContact) &&
-            java.util.Objects.equals(status, placement.status) &&
-            java.util.Objects.equals(tasks, placement.tasks) &&
-            java.util.Objects.equals(taxRate, placement.taxRate) &&
-            java.util.Objects.equals(taxState, placement.taxState) &&
-            java.util.Objects.equals(terminationReason, placement.terminationReason) &&
-            java.util.Objects.equals(timeUnits, placement.timeUnits) &&
-            java.util.Objects.equals(vendorClientCorporation, placement.vendorClientCorporation) &&
-            java.util.Objects.equals(workWeekStart, placement.workWeekStart) &&
-            java.util.Objects.equals(workersCompensationRate, placement.workersCompensationRate) &&
-            java.util.Objects.equals(owner, placement.owner) &&
-            java.util.Objects.equals(owners, placement.owners) &&
-            java.util.Objects.equals(customObject1s, placement.customObject1s) &&
-            java.util.Objects.equals(customObject2s, placement.customObject2s) &&
-            java.util.Objects.equals(customObject3s, placement.customObject3s) &&
-            java.util.Objects.equals(customObject4s, placement.customObject4s) &&
-            java.util.Objects.equals(customObject5s, placement.customObject5s) &&
-            java.util.Objects.equals(customObject6s, placement.customObject6s) &&
-            java.util.Objects.equals(customObject7s, placement.customObject7s) &&
-            java.util.Objects.equals(customObject8s, placement.customObject8s) &&
-            java.util.Objects.equals(customObject9s, placement.customObject9s) &&
-            java.util.Objects.equals(customObject10s, placement.customObject10s);
+    @JsonProperty("placementShiftSet")
+    public PlacementShiftSet getPlacementShiftSet() {
+        return placementShiftSet;
     }
 
+    @JsonProperty("placementShiftSet")
+    public void setPlacementShiftSet(PlacementShiftSet placementShiftSet) {
+        this.placementShiftSet = placementShiftSet;
+    }
+
+    @JsonProperty("bteSyncStatus")
+    public SimplifiedOptionsLookup getBteSyncStatus() {
+        return bteSyncStatus;
+    }
+
+    @JsonProperty("bteSyncStatus")
+    public void setBteSyncStatus(SimplifiedOptionsLookup bteSyncStatus) {
+        this.bteSyncStatus = bteSyncStatus;
+    }
+
+    @JsonProperty("lastBteSyncDate")
+    public DateTime getLastBteSyncDate() {
+        return lastBteSyncDate;
+    }
+
+    @JsonProperty("lastBteSyncDate")
+    public void setLastBteSyncDate(DateTime lastBteSyncDate) {
+        this.lastBteSyncDate = lastBteSyncDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Placement placement = (Placement) o;
+        return Objects.equals(id, placement.id) &&
+            Objects.equals(appointments, placement.appointments) &&
+            Objects.equals(approvingClientContact, placement.approvingClientContact) &&
+            Objects.equals(backupApprovingClientContact, placement.backupApprovingClientContact) &&
+            Objects.equals(billingClientContact, placement.billingClientContact) &&
+            Objects.equals(billingProfile, placement.billingProfile) &&
+            Objects.equals(billingFrequency, placement.billingFrequency) &&
+            Objects.equals(bonusPackage, placement.bonusPackage) &&
+            Objects.equals(branch, placement.branch) &&
+            Objects.equals(candidate, placement.candidate) &&
+            Objects.equals(placementCertifications, placement.placementCertifications) &&
+            Objects.equals(changeRequests, placement.changeRequests) &&
+            Objects.equals(clientBillRate, placement.clientBillRate) &&
+            Objects.equals(clientOvertimeRate, placement.clientOvertimeRate) &&
+            Objects.equals(comments, placement.comments) &&
+            Objects.equals(commissions, placement.commissions) &&
+            Objects.equals(location, placement.location) &&
+            Objects.equals(timeAndExpense, placement.timeAndExpense) &&
+            Objects.equals(placementShiftSet, placement.placementShiftSet) &&
+            Objects.equals(costCenter, placement.costCenter) &&
+            Objects.equals(dateAdded, placement.dateAdded) &&
+            Objects.equals(dateBegin, placement.dateBegin) &&
+            Objects.equals(dateClientEffective, placement.dateClientEffective) &&
+            Objects.equals(dateEffective, placement.dateEffective) &&
+            Objects.equals(dateEnd, placement.dateEnd) &&
+            Objects.equals(dateLastModified, placement.dateLastModified) &&
+            Objects.equals(daysGuaranteed, placement.daysGuaranteed) &&
+            Objects.equals(daysProRated, placement.daysProRated) &&
+            Objects.equals(durationWeeks, placement.durationWeeks) &&
+            Objects.equals(employeeType, placement.employeeType) &&
+            Objects.equals(employmentType, placement.employmentType) &&
+            Objects.equals(fee, placement.fee) &&
+            Objects.equals(flatFee, placement.flatFee) &&
+            Objects.equals(fileAttachments, placement.fileAttachments) &&
+            Objects.equals(generalLedgerSegment1, placement.generalLedgerSegment1) &&
+            Objects.equals(generalLedgerSegment2, placement.generalLedgerSegment2) &&
+            Objects.equals(generalLedgerSegment3, placement.generalLedgerSegment3) &&
+            Objects.equals(generalLedgerSegment4, placement.generalLedgerSegment4) &&
+            Objects.equals(generalLedgerSegment5, placement.generalLedgerSegment5) &&
+            Objects.equals(hoursOfOperation, placement.hoursOfOperation) &&
+            Objects.equals(hoursPerDay, placement.hoursPerDay) &&
+            Objects.equals(housingManagerID, placement.housingManagerID) &&
+            Objects.equals(housingStatus, placement.housingStatus) &&
+            Objects.equals(invoiceGroupName, placement.invoiceGroupName) &&
+            Objects.equals(jobOrder, placement.jobOrder) &&
+            Objects.equals(jobSubmission, placement.jobSubmission) &&
+            Objects.equals(migrateGUID, placement.migrateGUID) &&
+            Objects.equals(optionsPackage, placement.optionsPackage) &&
+            Objects.equals(onboardingDocumentReceivedCount, placement.onboardingDocumentReceivedCount) &&
+            Objects.equals(onboardingDocumentSentCount, placement.onboardingDocumentSentCount) &&
+            Objects.equals(onboardingPercentComplete, placement.onboardingPercentComplete) &&
+            Objects.equals(onboardingReceivedSent, placement.onboardingReceivedSent) &&
+            Objects.equals(onboardingStatus, placement.onboardingStatus) &&
+            Objects.equals(otExemption, placement.otExemption) &&
+            Objects.equals(otherHourlyFee, placement.otherHourlyFee) &&
+            Objects.equals(markUpPercentage, placement.markUpPercentage) &&
+            Objects.equals(notes, placement.notes) &&
+            Objects.equals(otherHourlyFeeComments, placement.otherHourlyFeeComments) &&
+            Objects.equals(overtimeMarkUpPercentage, placement.overtimeMarkUpPercentage) &&
+            Objects.equals(overtimeRate, placement.overtimeRate) &&
+            Objects.equals(payGroup, placement.payGroup) &&
+            Objects.equals(payRate, placement.payRate) &&
+            Objects.equals(projectCodeList, placement.projectCodeList) &&
+            Objects.equals(recruitingManagerPercentGrossMargin, placement.recruitingManagerPercentGrossMargin) &&
+            Objects.equals(referralFee, placement.referralFee) &&
+            Objects.equals(referralFeeType, placement.referralFeeType) &&
+            Objects.equals(reportTo, placement.reportTo) &&
+            Objects.equals(reportedMargin, placement.reportedMargin) &&
+            Objects.equals(salary, placement.salary) &&
+            Objects.equals(salaryUnit, placement.salaryUnit) &&
+            Objects.equals(salesManagerPercentGrossMargin, placement.salesManagerPercentGrossMargin) &&
+            Objects.equals(statementClientContact, placement.statementClientContact) &&
+            Objects.equals(status, placement.status) &&
+            Objects.equals(tasks, placement.tasks) &&
+            Objects.equals(taxRate, placement.taxRate) &&
+            Objects.equals(taxState, placement.taxState) &&
+            Objects.equals(terminationReason, placement.terminationReason) &&
+            Objects.equals(timeUnits, placement.timeUnits) &&
+            Objects.equals(vendorClientCorporation, placement.vendorClientCorporation) &&
+            Objects.equals(workWeekStart, placement.workWeekStart) &&
+            Objects.equals(workersCompensationRate, placement.workersCompensationRate) &&
+            Objects.equals(customObject1s, placement.customObject1s) &&
+            Objects.equals(customObject2s, placement.customObject2s) &&
+            Objects.equals(customObject3s, placement.customObject3s) &&
+            Objects.equals(customObject4s, placement.customObject4s) &&
+            Objects.equals(customObject5s, placement.customObject5s) &&
+            Objects.equals(customObject6s, placement.customObject6s) &&
+            Objects.equals(customObject7s, placement.customObject7s) &&
+            Objects.equals(customObject8s, placement.customObject8s) &&
+            Objects.equals(customObject9s, placement.customObject9s) &&
+            Objects.equals(customObject10s, placement.customObject10s) &&
+            Objects.equals(bteSyncStatus, placement.bteSyncStatus) &&
+            Objects.equals(lastBteSyncDate, placement.lastBteSyncDate) &&
+            Objects.equals(clientContact, placement.clientContact) &&
+            Objects.equals(clientCorporation, placement.clientCorporation) &&
+            Objects.equals(owner, placement.owner) &&
+            Objects.equals(owners, placement.owners);
+    }
+
+    @Override
     public int hashCode() {
         return java.util.Objects.hash(super.hashCode(), id, appointments, approvingClientContact,
             backupApprovingClientContact, timeAndExpense, billingClientContact, billingProfile, billingFrequency,
             bonusPackage, branch, candidate, placementCertifications, changeRequests, clientBillRate,
-            clientContact, clientCorporation, clientOvertimeRate, comments, commissions, location, costCenter, dateAdded,
-            dateBegin, dateClientEffective, dateEffective, dateEnd, dateLastModified, daysGuaranteed, daysProRated,
-            durationWeeks, employeeType, employmentType, fee, flatFee, fileAttachments, hoursOfOperation, hoursPerDay,
-            housingManagerID, housingStatus, invoiceGroupName, jobOrder, jobSubmission, migrateGUID, optionsPackage,
-            otExemption, otherHourlyFee, markUpPercentage, notes, otherHourlyFeeComments, overtimeMarkUpPercentage,
-            overtimeRate, payRate, projectCodeList, recruitingManagerPercentGrossMargin, referralFee, referralFeeType,
-            reportTo, reportedMargin, salary, salaryUnit, salesManagerPercentGrossMargin, statementClientContact, status,
-            tasks, taxRate, taxState, terminationReason, timeUnits, vendorClientCorporation, workWeekStart,
-            workersCompensationRate, owner, owners, customObject1s, customObject2s, customObject3s, customObject4s,
-            customObject5s, customObject6s, customObject7s, customObject8s, customObject9s, customObject10s);
+            clientOvertimeRate, comments, commissions, location, costCenter, dateAdded, dateBegin,
+            dateClientEffective, dateEffective, dateEnd, dateLastModified, daysGuaranteed, daysProRated,
+            durationWeeks, employeeType, employmentType, fee, flatFee, fileAttachments, hoursOfOperation, hoursPerDay
+            , housingManagerID, housingStatus, invoiceGroupName, jobOrder, jobSubmission, migrateGUID, optionsPackage
+            , otExemption, otherHourlyFee, markUpPercentage, notes, otherHourlyFeeComments, overtimeMarkUpPercentage,
+            overtimeRate, payRate, projectCodeList, recruitingManagerPercentGrossMargin, referralFee, referralFeeType
+            , reportTo, reportedMargin, salary, salaryUnit, salesManagerPercentGrossMargin, statementClientContact,
+            status, tasks, taxRate, taxState, terminationReason, timeUnits, vendorClientCorporation, workWeekStart,
+            workersCompensationRate, customObject1s, customObject2s, customObject3s, customObject4s, customObject5s,
+            customObject6s, customObject7s, customObject8s, customObject9s, customObject10s, clientContact,
+            clientCorporation, owner, owners);
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Placement{" +
             "id=" + id +
             ", appointments=" + appointments +
             ", approvingClientContact=" + approvingClientContact +
             ", backupApprovingClientContact=" + backupApprovingClientContact +
-            ", timeAndExpense=" + timeAndExpense +
             ", billingClientContact=" + billingClientContact +
             ", billingProfile=" + billingProfile +
             ", billingFrequency='" + billingFrequency + '\'' +
@@ -1292,6 +1484,8 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
             ", comments='" + comments + '\'' +
             ", commissions=" + commissions +
             ", location=" + location +
+            ", timeAndExpense=" + timeAndExpense +
+            ", placementShiftSet=" + placementShiftSet +
             ", costCenter='" + costCenter + '\'' +
             ", dateAdded=" + dateAdded +
             ", dateBegin=" + dateBegin +
@@ -1307,6 +1501,11 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
             ", fee=" + fee +
             ", flatFee=" + flatFee +
             ", fileAttachments=" + fileAttachments +
+            ", generalLedgerSegment1=" + generalLedgerSegment1 +
+            ", generalLedgerSegment2=" + generalLedgerSegment2 +
+            ", generalLedgerSegment3=" + generalLedgerSegment3 +
+            ", generalLedgerSegment4=" + generalLedgerSegment4 +
+            ", generalLedgerSegment5=" + generalLedgerSegment5 +
             ", hoursOfOperation='" + hoursOfOperation + '\'' +
             ", hoursPerDay=" + hoursPerDay +
             ", housingManagerID=" + housingManagerID +
@@ -1316,6 +1515,11 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
             ", jobSubmission=" + jobSubmission +
             ", migrateGUID=" + migrateGUID +
             ", optionsPackage='" + optionsPackage + '\'' +
+            ", onboardingDocumentReceivedCount=" + onboardingDocumentReceivedCount +
+            ", onboardingDocumentSentCount=" + onboardingDocumentSentCount +
+            ", onboardingPercentComplete=" + onboardingPercentComplete +
+            ", onboardingReceivedSent=" + onboardingReceivedSent +
+            ", onboardingStatus='" + onboardingStatus + '\'' +
             ", otExemption=" + otExemption +
             ", otherHourlyFee=" + otherHourlyFee +
             ", markUpPercentage=" + markUpPercentage +
@@ -1323,6 +1527,7 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
             ", otherHourlyFeeComments='" + otherHourlyFeeComments + '\'' +
             ", overtimeMarkUpPercentage=" + overtimeMarkUpPercentage +
             ", overtimeRate=" + overtimeRate +
+            ", payGroup=" + payGroup +
             ", payRate=" + payRate +
             ", projectCodeList='" + projectCodeList + '\'' +
             ", recruitingManagerPercentGrossMargin=" + recruitingManagerPercentGrossMargin +
@@ -1355,6 +1560,8 @@ public class Placement extends CustomFieldsD implements SearchEntity, QueryEntit
             ", customObject8s=" + customObject8s +
             ", customObject9s=" + customObject9s +
             ", customObject10s=" + customObject10s +
+            ", bteSyncStatus=" + bteSyncStatus +
+            ", lastBteSyncDate=" + lastBteSyncDate +
             '}';
     }
 }

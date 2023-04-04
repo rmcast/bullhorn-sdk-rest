@@ -3,6 +3,10 @@ package com.bullhornsdk.data;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import com.bullhornsdk.data.model.entity.core.onboarding365.forms.FederalTaxForm;
+import com.bullhornsdk.data.model.entity.core.onboarding365.forms.LocalTaxForm;
+import com.bullhornsdk.data.model.entity.core.onboarding365.forms.StateTaxForm;
+import com.bullhornsdk.data.model.entity.core.paybill.invoice.InvoiceStatementHistory;
 import com.bullhornsdk.data.model.entity.core.standard.*;
 import com.bullhornsdk.data.model.entity.file.*;
 import org.apache.log4j.Logger;
@@ -16,9 +20,9 @@ import com.bullhornsdk.data.model.response.list.ListWrapper;
 
 /**
  * Tests the "query" request
- * 
+ *
  * @author magnus.palm
- * 
+ *
  */
 
 public class TestStandardBullhornApiRestQuery extends BaseTest {
@@ -129,7 +133,7 @@ public class TestStandardBullhornApiRestQuery extends BaseTest {
 		runAssertions("ListWrapper<ClientContact>", wrapper);
 
 	}
-	
+
 	@Test
 	public void testQueryClientContact1() {
 
@@ -318,6 +322,14 @@ public class TestStandardBullhornApiRestQuery extends BaseTest {
 
         ListWrapper<JobBoardPost> wrapper = bullhornData.query(JobBoardPost.class, where, null, queryParams);
         runAssertions("ListWrapper<JobBoardPost>", wrapper);
+
+    }
+
+    @Test
+    public void testQueryJobShift() {
+
+        ListWrapper<JobShift> wrapper = bullhornData.query(JobShift.class, where, null, queryParams);
+        runAssertions("ListWrapper<JobShift>", wrapper);
 
     }
 
@@ -540,6 +552,38 @@ public class TestStandardBullhornApiRestQuery extends BaseTest {
 
         runAssertions("ListWrapper<PlacementFileAttachment>", wrapper);
 
+    }
+
+    @Test
+    public void testQueryLocalTaxForm() {
+
+        ListWrapper<LocalTaxForm> wrapper = bullhornData.query(LocalTaxForm.class, where, null, queryParams);
+
+        runAssertions("ListWrapper<LocalTaxForm>", wrapper);
+
+    }
+
+    @Test
+    public void testQueryStateTaxForm() {
+
+        ListWrapper<StateTaxForm> wrapper = bullhornData.query(StateTaxForm.class, where, null, queryParams);
+
+        runAssertions("ListWrapper<StateTaxForm>", wrapper);
+
+    }@Test
+    public void testQueryFederalTaxForm() {
+
+        ListWrapper<FederalTaxForm> wrapper = bullhornData.query(FederalTaxForm.class, where, null, queryParams);
+
+        runAssertions("ListWrapper<FederalTaxForm>", wrapper);
+
+    }
+
+    @Test
+    public void testQueryInvoiceStatementHistory() {
+        ListWrapper<InvoiceStatementHistory> wrapper = bullhornData.query(InvoiceStatementHistory.class, where, null, queryParams);
+
+        runAssertions("ListWrapper<InvoiceStatementHistory>", wrapper);
     }
 
 	private <T extends BullhornEntity> void runAssertions(String wrapperName, ListWrapper<T> wrapper) {
