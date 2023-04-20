@@ -8,7 +8,7 @@ import com.bullhornsdk.data.model.entity.core.type.BullhornEntity;
 import com.bullhornsdk.data.model.entity.customfields.CustomFieldsD;
 import com.bullhornsdk.data.model.entity.embedded.Address;
 import com.bullhornsdk.data.model.entity.embedded.OneToMany;
-import com.bullhornsdk.data.model.response.file.standard.StandardFileAttachment;
+import com.bullhornsdk.data.model.entity.file.JobOrderFileAttachment;
 import com.bullhornsdk.data.util.ReadOnly;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -107,7 +107,7 @@ public abstract class JobData extends CustomFieldsD implements BullhornEntity {
 
     private BigDecimal feeArrangement;
 
-    private OneToMany<StandardFileAttachment> fileAttachments;
+    private OneToMany<JobOrderFileAttachment> fileAttachments;
 
     @JsonIgnore
     @Size(max = 30)
@@ -621,12 +621,12 @@ public abstract class JobData extends CustomFieldsD implements BullhornEntity {
     }
 
     @JsonProperty("fileAttachments")
-    public OneToMany<StandardFileAttachment> getFileAttachments() {
+    public OneToMany<JobOrderFileAttachment> getFileAttachments() {
         return fileAttachments;
     }
 
     @JsonProperty("fileAttachments")
-    public void setFileAttachments(OneToMany<StandardFileAttachment> fileAttachments) {
+    public void setFileAttachments(OneToMany<JobOrderFileAttachment> fileAttachments) {
         this.fileAttachments = fileAttachments;
     }
 

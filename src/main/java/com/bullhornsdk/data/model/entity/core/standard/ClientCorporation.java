@@ -50,6 +50,7 @@ import com.bullhornsdk.data.model.entity.customfields.CustomFieldsB;
 import com.bullhornsdk.data.model.entity.embedded.Address;
 import com.bullhornsdk.data.model.entity.embedded.OneToMany;
 import com.bullhornsdk.data.model.entity.embedded.OneToManyLinkedId;
+import com.bullhornsdk.data.model.entity.file.ClientCorporationFileAttachment;
 import com.bullhornsdk.data.util.ReadOnly;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -72,7 +73,8 @@ import java.util.Objects;
 		"customText14", "customText15", "customText16", "customText17", "customText18", "customText19", "customText2", "customText20",
 		"customText3", "customText4", "customText5", "customText6", "customText7", "customText8", "customText9", "customTextBlock1",
 		"customTextBlock2", "customTextBlock3", "customTextBlock4", "customTextBlock5", "dateAdded", "dateFounded", "dateLastModified", "department",
-		"externalID", "fax", "feeArrangement", "funding", "industryList", "invoiceFormat", "leads", "linkedinProfileName", "name", "notes", "numEmployees", "numOffices",
+		"externalID", "fax", "feeArrangement", "fileAttachments", "funding", "industryList", "invoiceFormat", "leads",
+    "linkedinProfileName", "name", "notes", "numEmployees", "numOffices",
 		"ownership", "parentClientCorporation", "phone", "revenue", "status", "taxRate", "tickerSymbol", "trackTitle", "userOwners", "workWeekStart",
         "customObject1s", "customObject2s", "customObject3s", "customObject4s", "customObject5s", "customObject6s", "customObject7s",
         "customObject8s", "customObject9s", "customObject10s", "locations", "twitterHandle","facebookProfileName", "exemptionStatus" })
@@ -137,6 +139,8 @@ public class ClientCorporation extends CustomFieldsB implements QueryEntity, Upd
 	private String fax;
 
 	private BigDecimal feeArrangement;
+
+    private OneToMany<ClientCorporationFileAttachment> fileAttachments;
 
 	@JsonIgnore
 	private String funding;
@@ -520,6 +524,16 @@ public class ClientCorporation extends CustomFieldsB implements QueryEntity, Upd
 	public void setFeeArrangement(BigDecimal feeArrangement) {
 		this.feeArrangement = feeArrangement;
 	}
+
+    @JsonProperty("fileAttachments")
+    public OneToMany<ClientCorporationFileAttachment> getFileAttachments() {
+        return fileAttachments;
+    }
+
+    @JsonProperty("fileAttachments")
+    public void setFileAttachments(OneToMany<ClientCorporationFileAttachment> fileAttachments) {
+        this.fileAttachments = fileAttachments;
+    }
 
 	@JsonProperty("funding")
 	public String getFunding() {
@@ -1244,6 +1258,7 @@ public class ClientCorporation extends CustomFieldsB implements QueryEntity, Upd
             Objects.equals(externalID, that.externalID) &&
             Objects.equals(fax, that.fax) &&
             Objects.equals(feeArrangement, that.feeArrangement) &&
+            Objects.equals(fileAttachments, that.fileAttachments) &&
             Objects.equals(funding, that.funding) &&
             Objects.equals(industryList, that.industryList) &&
             Objects.equals(invoiceFormat, that.invoiceFormat) &&
@@ -1311,7 +1326,12 @@ public class ClientCorporation extends CustomFieldsB implements QueryEntity, Upd
     @Override
     public int hashCode() {
 
-        return Objects.hash(super.hashCode(), id, address, annualRevenue, billingAddress, billingContact, billingFrequency, billingPhone, branch, businessSectorList, childClientCorporations, clientContacts, companyDescription, companyURL, competitors, culture, dateAdded, dateFounded, dateLastModified, department, externalID, fax, feeArrangement, funding, industryList, invoiceFormat, locations, leads, linkedinProfileName, twitterHandle, facebookProfileName, exemptionStatus, name, notes, numEmployees, numOffices, ownership, owners, parentClientCorporation, phone, revenue, status, taxRate, tickerSymbol, trackTitle, userOwners, workWeekStart, requirements, certificationGroups, certifications, customObject1s, customObject2s, customObject3s, customObject4s, customObject5s, customObject6s, customObject7s, customObject8s, customObject9s, customObject10s, customObject11s, customObject12s, customObject13s, customObject14s, customObject15s, customObject16s, customObject17s, customObject18s, customObject19s, customObject20s, customObject21s, customObject22s, customObject23s, customObject24s, customObject25s, customObject26s, customObject27s, customObject28s, customObject29s, customObject30s, customObject31s, customObject32s, customObject33s, customObject34s, customObject35s);
+        return Objects.hash(super.hashCode(), id, address, annualRevenue, billingAddress, billingContact,
+            billingFrequency, billingPhone, branch, businessSectorList, childClientCorporations, clientContacts,
+            companyDescription, companyURL, competitors, culture, dateAdded, dateFounded, dateLastModified,
+            department, externalID, fax, feeArrangement, fileAttachments, funding, industryList, invoiceFormat,
+            locations, leads,
+            linkedinProfileName, twitterHandle, facebookProfileName, exemptionStatus, name, notes, numEmployees, numOffices, ownership, owners, parentClientCorporation, phone, revenue, status, taxRate, tickerSymbol, trackTitle, userOwners, workWeekStart, requirements, certificationGroups, certifications, customObject1s, customObject2s, customObject3s, customObject4s, customObject5s, customObject6s, customObject7s, customObject8s, customObject9s, customObject10s, customObject11s, customObject12s, customObject13s, customObject14s, customObject15s, customObject16s, customObject17s, customObject18s, customObject19s, customObject20s, customObject21s, customObject22s, customObject23s, customObject24s, customObject25s, customObject26s, customObject27s, customObject28s, customObject29s, customObject30s, customObject31s, customObject32s, customObject33s, customObject34s, customObject35s);
     }
 
     @Override
@@ -1339,6 +1359,7 @@ public class ClientCorporation extends CustomFieldsB implements QueryEntity, Upd
         sb.append(", externalID='").append(externalID).append('\'');
         sb.append(", fax='").append(fax).append('\'');
         sb.append(", feeArrangement=").append(feeArrangement);
+        sb.append(", fileAttachments=").append(fileAttachments);
         sb.append(", funding='").append(funding).append('\'');
         sb.append(", industryList='").append(industryList).append('\'');
         sb.append(", invoiceFormat='").append(invoiceFormat).append('\'');

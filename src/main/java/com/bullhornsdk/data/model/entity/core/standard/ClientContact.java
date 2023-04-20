@@ -24,6 +24,7 @@ import com.bullhornsdk.data.model.entity.customfields.CustomFieldsB;
 import com.bullhornsdk.data.model.entity.embedded.Address;
 import com.bullhornsdk.data.model.entity.embedded.OneToMany;
 import com.bullhornsdk.data.model.entity.embedded.OneToManyLinkedId;
+import com.bullhornsdk.data.model.entity.file.ClientContactFileAttachment;
 import com.bullhornsdk.data.util.ReadOnly;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -35,6 +36,7 @@ import org.hibernate.validator.constraints.Email;
 import org.joda.time.DateTime;
 
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonRootName(value = "data")
@@ -52,7 +54,7 @@ import javax.validation.constraints.Size;
 		"dateAdded", "dateLastComment", "dateLastModified", "dateLastVisit", "deleteMe",
 		"description", "desiredCategories", "desiredSkills",
 		"desiredSpecialties", "division", "email", "email2", "email3",
-		"externalID", "fax", "fax2", "fax3", "firstName", "isDayLightSavings",
+		"externalID", "fax", "fax2", "fax3", "fileAttachments", "firstName", "isDayLightSavings",
         "isDefaultContact", "isDeleted", "isLockedOut", "lastName", "linkedPerson", "leads",
 		"massMailOptOut", "middleName", "migrateGUID", "mobile", "name",
 		"namePrefix", "nameSuffix", "nickName", "notes", "numEmployees", "occupation",
@@ -145,6 +147,8 @@ public class ClientContact extends CustomFieldsB implements QueryEntity,
 	@JsonIgnore
 	@Size(max = 20)
 	private String fax3;
+
+    private OneToMany<ClientContactFileAttachment> fileAttachments;
 
 	@JsonIgnore
 	@Size(max = 50)
@@ -591,6 +595,16 @@ public class ClientContact extends CustomFieldsB implements QueryEntity,
 	public void setFax3(String fax3) {
 		this.fax3 = fax3;
 	}
+
+    @JsonProperty("fileAttachments")
+    public OneToMany<ClientContactFileAttachment> getFileAttachments() {
+        return fileAttachments;
+    }
+
+    @JsonProperty("fileAttachments")
+    public void setFileAttachments(OneToMany<ClientContactFileAttachment> fileAttachments) {
+        this.fileAttachments = fileAttachments;
+    }
 
 	@JsonProperty("firstName")
 	public String getFirstName() {
@@ -1169,6 +1183,7 @@ public class ClientContact extends CustomFieldsB implements QueryEntity,
         if (fax != null ? !fax.equals(that.fax) : that.fax != null) return false;
         if (fax2 != null ? !fax2.equals(that.fax2) : that.fax2 != null) return false;
         if (fax3 != null ? !fax3.equals(that.fax3) : that.fax3 != null) return false;
+        if (fileAttachments != null ? !fileAttachments.equals(that.fileAttachments) : that.fileAttachments != null) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
         if (isDayLightSavings != null ? !isDayLightSavings.equals(that.isDayLightSavings) : that.isDayLightSavings != null)
             return false;
@@ -1269,6 +1284,7 @@ public class ClientContact extends CustomFieldsB implements QueryEntity,
         result = 31 * result + (fax != null ? fax.hashCode() : 0);
         result = 31 * result + (fax2 != null ? fax2.hashCode() : 0);
         result = 31 * result + (fax3 != null ? fax3.hashCode() : 0);
+        result = 31 * result + (fileAttachments != null ? fileAttachments.hashCode() : 0);
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (isDayLightSavings != null ? isDayLightSavings.hashCode() : 0);
         result = 31 * result + (isDefaultContact != null ? isDefaultContact.hashCode() : 0);
@@ -1353,6 +1369,7 @@ public class ClientContact extends CustomFieldsB implements QueryEntity,
         sb.append(", fax='").append(fax).append('\'');
         sb.append(", fax2='").append(fax2).append('\'');
         sb.append(", fax3='").append(fax3).append('\'');
+        sb.append(", fileAttachments=").append(fileAttachments);
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", isDayLightSavings=").append(isDayLightSavings);
         sb.append(", isDefaultContact=").append(isDefaultContact);
